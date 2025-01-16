@@ -1,3 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Envelope Click to Reveal</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height:100vh;
+            margin: 0;
+            background-image: url('https://64.media.tumblr.com/16a9195913137121c34b79bb40cb42cd/31a1c55e46c15a00-4a/s2048x3072/e086f43f78b8e897f725aafa90aca45e4ab609e8.png');
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .envelope {
+            width: 200px;
+            height: 100px;
+            background-color: #D3D3D3;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.4s, width 0.4s, height 0.4s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 10px;
+            z-index: 1;
+        }
+
+        .envelope.open {
+            width: 90vw;
+            height: 70vh;
+            z-index: 2;
+        }
+
+        .flap {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            background-color: #ffffff;
+            clip-path: polygon(0 0, 50% 50%, 100% 0);
+            top: 0;
+            transition: transform 0.4s ease;
+        }
+
+        .flap::before {
+            content: "♥";
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: red;
+        }
+
+        .envelope.open .flap {
+            transform: rotateY(180deg);
+            width: 90vw;
+            height: 70vh;
+        }
+
+        .content {
+            position: absolute;
+            text-align: left;
+            font-size: 14px;
+            color: #333;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease, max-height 0.4s ease;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            overflow-x: auto;
+            overflow-y: auto;
+            width: 90%;
+            max-width: 90%;
+            max-height: 70vh;
+        }
+
+        .envelope.open .content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .theme-button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="envelope" onclick="toggleEnvelope(event)">
+        <div class="flap"></div>
+        <div class="content" id="content">
+            <p>Dear Isis,
+			 <br><br>
+			 Happy happy happy birthday!!!!!! Congratulations on making it so far, im so proud of you. I know i (jokingly) get mad at you over u being "stupid", but please know that i dont actually think low of you.<br>
+			 infact, i value you so so so much. Ever since i became friends with you my life at silliman has gotten better. Thank you for providing comfort, morale, support and most of all friendship. Im sorry if i dont show it often
+			 but i really really do care for you so much. and im really happy to have met you, and i hope we'll stay friends forever, since we havent met earlier. Happy 15, I will love you always. No matter how weird origi
+			(*big sigh*) crazy... you are, i will always find happiness talking to you. And i hope to provide the same. Thank you for being here <3
+			<br><br>
+			I sincerely wish you nothing but the best in this life. heres to joy, riches, good health and like 100 more birthdays. Never let someone dim down ur brightness. Keep being who you are. In this sea of blue and black writing utensils
+			ur my rainbow gel pen :>. Ur openess and confidence in ur personality and in urself in general is what made me really admire you as i struggle with that. I know people joke
+			about you having no fear  and you urself even joke about being 100000000002143419238049285285x more embarrasing than ur friends so we can look cool infront of the huzz or wtv,,
+			but You being You is amazing. I dont care that its annoying, because when you laugh I laugh. And thats why youre my best friend. Youre so thoughtful and kind behind ur goofy ahh exterior
+			and i hope youll stay the same forever. I hope you know me rey gio dhar ligma and fran love and care for u even though u are 98% annoying... no... 99%... no... 99.99%.........
+			<br> well, maybe 100% sometimes but its why i love u. dont stop bugging me with ur nonsensical actions, and dont apologie for being You. beeeeeeeeeeeeeeeee whppppppoo u are,,,,,,,,,,,,,,,,,
+			<br> 
+			anyway. ahem, cough cough. Yes. ur creativity in arts and ur passion in ur interest,s (roblosx....) and ur talent in drums and ur contagiously happyy personality makes you a wonderful person. A wonderful friend. 
+			The best kind. 
+			<br>
+			Thank you, really. I'm  glad you're here.
+			
+		<br><br>
+		Love, and Sincerely, 
+		<br>Sigma SKibidi SeM/Theo
 
 
                 <br><br>
