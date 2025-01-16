@@ -1,0 +1,72 @@
+
+
+                <br><br>
+
+            </p>
+            <button class="theme-button" onclick="changeEnvelopeTheme(event)">Change Theme</button>
+        </div>
+    </div>
+
+    <script>
+        let themeCount = 0; // Track number of theme changes
+
+        function toggleEnvelope(event) {
+            // Prevent the button from triggering the envelope toggle event
+            if (event.target.tagName === 'BUTTON') return;
+
+            const envelope = document.querySelector('.envelope');
+            const content = document.querySelector('.content');
+
+            // Toggle the envelope open/close
+            envelope.classList.toggle('open');
+
+            // Dynamically adjust envelope size when opened
+            if (envelope.classList.contains('open')) {
+                const contentHeight = content.scrollHeight;
+                const contentWidth = content.scrollWidth;
+
+                envelope.style.height = `${Math.max(contentHeight + 40, window.innerHeight * 0.7)}px`; // Add padding and limit height to 70% of the screen
+                envelope.style.width = `${Math.max(contentWidth + 40, window.innerWidth * 0.9)}px`; // Add padding and limit width to 90% of the screen
+
+                setTimeout(() => {
+                    confetti({
+                        particleCount: 100,
+                        spread: 80,
+                        origin: { x: 0.5, y: 0.5 },
+                        shapes: ['circle', 'square'],
+                        colors: ['#ff0000', '#ffff00', '#00ff00', '#0000ff', '#ff00ff']
+                    });
+                }, 200);
+
+            } else {
+                envelope.style.height = '200px';
+                envelope.style.width = '300px';
+            }
+        }
+
+        function changeEnvelopeTheme(event) {
+            // Prevent the button click from closing the envelope
+            event.stopPropagation();
+
+            // Define the pastel color themes
+            const pastelColors = [
+                { background: '#f8d9e1', envelope: '#f8c6d1' },  // Soft pink
+                { background: '#d4f1f4', envelope: '#a0d8f1' },  // Soft blue
+                { background: '#e0f7cc', envelope: '#b0e57c' },  // Soft green
+                { background: '#fff4e1', envelope: '#ffdd7f' },  // Soft yellow
+                { background: '#f3e0f7', envelope: '#e4a9f6' }   // Soft lavender
+            ];
+
+            // Loop through the themes
+            themeCount = (themeCount + 1) % pastelColors.length;
+
+            const theme = pastelColors[themeCount];
+            document.body.style.backgroundColor = theme.background;
+            const envelope = document.querySelector('.envelope');
+            envelope.style.backgroundColor = theme.envelope;
+        }
+    </script>
+
+</body>
+
+</html>
